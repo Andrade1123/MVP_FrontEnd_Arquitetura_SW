@@ -72,29 +72,7 @@ const getList = async () => {
       console.error('Error:', error);
     });
   }
-  
-  
-  /*
-    --------------------------------------------------------------------------------------
-    Função para remover um item da lista de acordo com o click no botão close
-    --------------------------------------------------------------------------------------
-  */
-  const removeElement = () => {
-    let close = document.getElementsByClassName("close");
-    // var table = document.getElementById('myTable');
-    let i;
-    for (i = 0; i < close.length; i++) {
-      close[i].onclick = function () {
-        let div = this.parentElement.parentElement;
-        const nomeItem = div.getElementsByTagName('td')[0].innerHTML
-        if (confirm("Você tem certeza?")) {
-          div.remove()
-          deleteItem(nomeItem)
-          alert("Removido!")
-        }
-      }
-    }
-  }
+
   
   /*
     --------------------------------------------------------------------------------------
@@ -118,7 +96,7 @@ const getList = async () => {
   
   /*
     --------------------------------------------------------------------------------------
-    Função para adicionar um novo item com nome, quantidade e valor 
+    Função para adicionar um novo item com categoria, tamanho, quantidade e valor 
     --------------------------------------------------------------------------------------
   */
   const newItem = (e) => {
@@ -165,8 +143,6 @@ const getList = async () => {
     document.getElementById("quantidade").value = "";
     document.getElementById("valor").value = "";
     document.getElementById("tamanho").value = "";
-  
-    //removeElement()
   }
 
   formulario.onsubmit = newItem;

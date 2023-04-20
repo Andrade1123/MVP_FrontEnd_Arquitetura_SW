@@ -1,10 +1,28 @@
 # Meu Front
 
-Este pequeno projeto faz parte do material diático da Disciplina **Desenvolvimento Full Stack Básico** 
+ ```
+ O objetivo é a entrega do MVP que tem como escopo a implementação de um FrontEnd, com 3x rotas de API e uma tabela de roupas para cadastro, busca e deleção
+ ```
+ 
+```
+Para executar os comandos estamos utilizando um ambiente virtual env.
+```
+ 
+ (env)$ pip install -r requirements.txt
+```
+Este comando instala as dependências/bibliotecas, descritas no arquivo `requirements.txt`.
 
-O objetivo aqui é ilutsrar o conteúdo apresentado na terceira aula.
+Para executar a API  basta executar:
 
----
-## Como executar
+```
+(env)$ flask run --host 0.0.0.0 --port 5000
+```
 
-Basta fazer o download do projeto e abrir o arquivo index.html no seu browser.
+Em modo de desenvolvimento é recomendado executar utilizando o parâmetro reload, que reiniciará o servidor
+automaticamente após uma mudança no código fonte. 
+
+```
+(env)$ flask run --host 0.0.0.0 --port 5000 --reload
+```
+
+Abra o [http://localhost:5000/#/](http://localhost:5000/#/) no navegador para verificar o status da API em execução.
