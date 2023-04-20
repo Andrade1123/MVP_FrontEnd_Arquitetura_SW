@@ -1,7 +1,7 @@
 # Meu Front
 
  ```
- O objetivo é a entrega do MVP que tem como escopo a implementação de um FrontEnd, com 3x rotas de API e uma tabela de roupas para cadastro, busca e deleção
+ O objetivo é a entrega do MVP que tem como escopo a implementação de um FrontEnd, com 3x metodos de API em uma tabela de roupas para cadastro, busca e deleção
  ```
  
 ```
