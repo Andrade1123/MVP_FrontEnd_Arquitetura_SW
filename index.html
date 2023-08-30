@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="styles.css">
 
     <title>Projeto</title>
+    <script>
+        const token = sessionStorage.getItem('token');
+        if(!token)
+            window.location.href = '/login.html';
+    </script>
 </head>
 
 <body>
@@ -37,12 +42,12 @@
                 <th>Tamanho</th>
                 <th>Quantidade</th>
                 <th>Valor</th>
-                <th></th>
+                <th>Editar</th>
+                <th>Deletar</th>
             </tr>
         </table>
     </section>
 
     <script src="scripts.js"></script>
 </body>
-
 </html>

@@ -73,6 +73,32 @@ const getList = async () => {
     });
   }
 
+  const editItem = async (inputCategoria, inputQuantidade, inputValor, inputTamanho) => {
+    
+    //cria os dados no formato de formulario pra enviar pro servidor
+    const formData = new FormData();
+    formData.append('categoria', inputCategoria);
+    formData.append('tamanho', inputTamanho);
+    formData.append('quantidade', inputQuantidade);
+    formData.append('valor', inputValor);
+  
+    let url = 'http://127.0.0.1:5000/roupa';
+    fetch(url, {
+      method: 'PUT',
+      body: formData
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      semRoupas.classList.add('escondido');
+      tabela.classList.remove('escondido');
+      // insere a nova roupa criada na tabela
+      insertList(data.categoria, data.tamanho, data.quantidade, data.valor, data.id);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
   
   /*
     --------------------------------------------------------------------------------------
@@ -134,8 +160,11 @@ const getList = async () => {
       cel.textContent = item[i];
     }
 
+    const colunaDoBotãoDeEditar = row.insertCell(-1);
+    colunaDoBotãoDeEditar.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1827/1827951.png" width="15px" height="15px"/>';
+    colunaDoBotãoDeEditar.onclick = () => editItem(id);
+
     const colunaDoBotaoDeDeletar = row.insertCell(-1);
-    
     colunaDoBotaoDeDeletar.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px"/>';
     colunaDoBotaoDeDeletar.onclick = () => deleteItem(id, row);
 
