@@ -36,11 +36,13 @@ header, form, section {
     position: relative;
     z-index: 1;
 }
-#formulario {
+#formulario input, 
+#formulario-edicao {
     width: 300px;
     margin: auto;
 }
-#formulario input {
+#formulario input, 
+#formulario-edicao input {
     display: block;
     margin: 13px auto;
 }
@@ -57,6 +59,26 @@ header, form, section {
 #tabela-de-roupas tr {
     background-color: darkgray;
     border: 1px solid white;
+}
+
+.container-formulario-edicao {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.container-formulario-edicao h3 {
+    width: 100%;
 }
 
 .escondido {

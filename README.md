@@ -1,28 +1,16 @@
 # Meu Front
 
  ```
- O objetivo é a entrega do MVP que tem como escopo a implementação de um FrontEnd, com 3x metodos de API em uma tabela de roupas para cadastro, busca e deleção
- ```
+ O objetivo é a entrega do MVP que tem como escopo a implementação de um FrontEnd, que fará comunicação com dois serviços distintos, em um total de 5x rotas.
+  1) Um back-end com 4x metodos de API em uma tabela de roupas para cadastro, busca, deleção e edição 
+  2) Uma API externa de autenticação para Login de Usuário (1x método POST).
+  Para realizar o login, utilize o username 'johnd' e password: 'm38rmF$'.
+  [Documentação da FakeAPI utilizada](https://fakestoreapi.com/docs#a-login)
+
+  Para executar o container do Docker do Front-end:
+  - Abra o terminal na pasta do do projeto, e use os comandos.
+  - docker build -t frontend
+  - docker run -p 3000:8000 frontend
+
+  Em seguida, acesse o link [http://localhost:3000](http://localhost:3000) no navegador.
  
-```
-Para executar os comandos estamos utilizando um ambiente virtual env.
-```
- 
- (env)$ pip install -r requirements.txt
-```
-Este comando instala as dependências/bibliotecas, descritas no arquivo `requirements.txt`.
-
-Para executar a API  basta executar:
-
-```
-(env)$ flask run --host 0.0.0.0 --port 5000
-```
-
-Em modo de desenvolvimento é recomendado executar utilizando o parâmetro reload, que reiniciará o servidor
-automaticamente após uma mudança no código fonte. 
-
-```
-(env)$ flask run --host 0.0.0.0 --port 5000 --reload
-```
-
-Abra o [http://localhost:5000/#/](http://localhost:5000/#/) no navegador para verificar o status da API em execução.

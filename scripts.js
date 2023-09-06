@@ -73,30 +73,59 @@ const getList = async () => {
     });
   }
 
-  const editItem = async (inputCategoria, inputQuantidade, inputValor, inputTamanho) => {
+  const updateList = () => {
+    tabela.innerHTML = `
+      <tr>
+        <th>Categoria</th>
+        <th>Tamanho</th>
+        <th>Quantidade</th>
+        <th>Valor</th>
+        <th>Editar</th>
+        <th>Deletar</th>
+      </tr>
+    `;
+    getList();
+  }
+
+  const editItem = (id, categoria, tamanho, quantidade, valor) => {
+    const containerFormularioDeEdicao = document.getElementById('container-formulario-edicao');
+    const formularioDeEdicao = document.getElementById('formulario-edicao');
+    const botaoDeCancelar = formularioDeEdicao.getElementsByClassName('cancelBtn')[0];
+
+    botaoDeCancelar.onclick = () => containerFormularioDeEdicao.classList.add('escondido');
     
-    //cria os dados no formato de formulario pra enviar pro servidor
-    const formData = new FormData();
-    formData.append('categoria', inputCategoria);
-    formData.append('tamanho', inputTamanho);
-    formData.append('quantidade', inputQuantidade);
-    formData.append('valor', inputValor);
-  
-    let url = 'http://127.0.0.1:5000/roupa';
-    fetch(url, {
-      method: 'PUT',
-      body: formData
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      semRoupas.classList.add('escondido');
-      tabela.classList.remove('escondido');
-      // insere a nova roupa criada na tabela
-      insertList(data.categoria, data.tamanho, data.quantidade, data.valor, data.id);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    const inputDeCategoria = document.getElementsByName('categoria')[0];
+    const inputDeTamanho = document.getElementsByName('tamanho')[0];
+    const inputDeQuantidade = document.getElementsByName('quantidade')[0];
+    const inputDeValor = document.getElementsByName('valor')[0];
+
+    inputDeCategoria.value = categoria
+    inputDeTamanho.value = tamanho
+    inputDeQuantidade.value = quantidade
+    inputDeValor.value = valor
+
+    containerFormularioDeEdicao.classList.remove('escondido');
+    
+    formularioDeEdicao.onsubmit = (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      formData.append('id', id);
+
+      let url = 'http://127.0.0.1:5000/roupa';
+      fetch(url, {
+        method: 'PUT',
+        body: formData
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        containerFormularioDeEdicao.classList.add('escondido');
+        updateList();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
   }
 
   
@@ -162,7 +191,7 @@ const getList = async () => {
 
     const colunaDoBotãoDeEditar = row.insertCell(-1);
     colunaDoBotãoDeEditar.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1827/1827951.png" width="15px" height="15px"/>';
-    colunaDoBotãoDeEditar.onclick = () => editItem(id);
+    colunaDoBotãoDeEditar.onclick = () => editItem(id, categoria, tamanho, quantidade, valor);
 
     const colunaDoBotaoDeDeletar = row.insertCell(-1);
     colunaDoBotaoDeDeletar.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px"/>';
